@@ -1,0 +1,6 @@
+vendor
+rr
+request
+cache/*
+README.md
+psalm.xml

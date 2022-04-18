@@ -1,0 +1,31 @@
+version: '2.7'
+
+rpc:
+  listen: tcp://127.0.0.1:6001
+
+server:
+  command: "php worker.php"
+
+http:
+  address: "0.0.0.0:8080"
+
+reload:
+  interval: 1s
+  patterns: [ ".php" ]
+  services:
+    http:
+      recursive: true
+      ignore: [ "vendor" ]
+      patterns: [ ".php", ".go", ".md" ]
+      dirs: [ "." ]
+
+logs:
+  level: info
+  mode: production
+  channels:
+    server:
+      mode: raw
+      level: info
+      encoding: console
+    http:
+      mode: none
